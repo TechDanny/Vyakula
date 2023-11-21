@@ -74,3 +74,6 @@ body{
 .carousel-caption a:hover{
     background: orange;
 }
+#about{
+    margin-top: 25px;
+}
