@@ -22,3 +22,55 @@ body{
     color: yellow;
     font-size: 25px;
 }
+
+.carousel-item{
+    height: 100vh;
+    min-width: 300px;
+}
+.bg-1{
+    background-image: url(../images/biriani.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.bg-2{
+    background-image: url(../images/Shawarma.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.bg-3{
+    background-image: url(../images/ugali.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.carousel-caption{
+    z-index: 2;
+}
+.carousel-inner::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+.carousel-item h5{
+    font-size: 45px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.carousel-caption a{
+    padding: 5px 17px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-family: fantasy;
+    letter-spacing: 1px;
+    text-decoration: none;
+    background-color: red;
+    color: black;
+}
+.carousel-caption a:hover{
+    background: orange;
+}
