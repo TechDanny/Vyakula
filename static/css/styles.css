@@ -1,0 +1,24 @@
+body{
+    font-family: monospace;
+}
+
+.navbar-nav a{
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.navbar{
+    background: #FF6C22;
+}
+.navbar .navbar-brand{
+    font-size: 30px;
+    font-weight: 700;
+
+}
+.navbar-nav .nav-item{
+    margin: 0 13px;
+}
+.navbar-nav .nav-link:hover{
+    color: yellow;
+    font-size: 25px;
+}
