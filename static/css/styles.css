@@ -161,3 +161,20 @@ h1{
 .details>button:hover{
     background: #fc0101;
 }
+#footer {
+    padding: 1% 5%;
+    text-align: center;
+    background-color: #072541;
+ }
+ 
+ .social-icon {
+    margin: 20px 10px;
+    color: #7743DB;
+ }
+ 
+ .social-icon:hover {
+    color: #FF6C22;
+ }
+ .copyright {
+    color: #ffff
+ }
