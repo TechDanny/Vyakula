@@ -225,6 +225,53 @@
 
     <!--Contact page-->
 
+    <section id="contact">
+      <div class="container-lg">
+        <div class="text-center">
+            <h2>Get In Touch</h2>
+            <p class="lead">Questions to ask? Fill out the form to contact us directly...</p>
+        </div>
+        <div class="row justify-content-center my-5">
+            <div class="col-lg-6">
+                <form method="post" action="" name="contact-form">
+                    <label for="email" class="form-label">Enter your email</label>
+                    <div class="mb-4 input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-envelope-fill"></i>
+                            </span>
+                            <input type="email" name="email" class="form-control" required placeholder="e.g: vyakula@gmail.com" autocomplete="email">
+                        
+                    </div>
+                    
+                    <label for="name" class="form-label">Enter your name:</label>
+                    <div class="mb-4 input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-person-fill"></i>
+                            </span>
+                           <input type="text" name="name" class="form-control" required placeholder="e.g: Vyakula" autocomplete="name">
+                        </div>
+                    <label for="subject" class="form-label">What is your question?</label>
+                    <select class="form-select" id="subject">
+                        <option value="pricing" selected>Order change</option>
+                        <option value="content">Delivery query</option>
+                        <option value="other">Other questions</option>
+
+                    </select>
+                    <div class="form-floating mb-4 mt-5">
+                        <textarea id="query" name="message" class="form-control" autocomplete="message"></textarea>
+                        <label for="query">Your question...</label>
+
+                    </div>
+                    <div class="mb-4 text-center">
+                        <button type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </section>
+
     <!--end of contact page-->
     
 </body>
