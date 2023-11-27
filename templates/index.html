@@ -38,6 +38,30 @@
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
+
+              <li class="nav-item profile">
+                <ul class="custom-list-style">
+                    <li class="nav-item dropdown">
+                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-light">
+                              <li style="padding-left: 10px;">
+                                  Hello {{ user.first_name }} {{ user.second_name }} <br> <hr>
+                                  Name: {{ user.username }} <br>
+                                  Phone no.: {{ user.phone_no }} <br>
+                                  email: {{ user.email }}
+                                  <hr>
+                              </li>
+                              <li style="text-align: right;">
+                                  <form action="{{ url_for('logout') }}" method="post">
+                                      <button type="submit" class="btn btn-danger" class="btn btn-link">Logout</button>
+                                  </form>
+                              </li>
+                          
+                      </ul>
+                      
+                    </li>
               
               </ul>
               
