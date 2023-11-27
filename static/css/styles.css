@@ -178,3 +178,25 @@ h1{
  .copyright {
     color: #ffff
  }
+ .nav-item.profile {
+    padding-top: 11;
+}
+.nav-item.profile i.bi-person-circle {
+    font-size: 20px;
+}
+.profile:hover{
+    cursor: pointer;
+}
+.dropdown-toggle {
+    margin-top: -4px;
+    font-size: 20px;
+}
+.custom-list-style {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bi {
+    border: none;
+}
