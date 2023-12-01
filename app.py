@@ -10,7 +10,6 @@ import base64
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clients.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///menu.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
