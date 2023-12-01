@@ -22,7 +22,7 @@ UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'upload
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-db = SQLAlchemy(app)
+
 total_quantity = 0
 cart_items = []
 other_details = {'discount_percentage': 10, 'subtotal': 0}
