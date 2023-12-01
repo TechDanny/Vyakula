@@ -120,103 +120,34 @@
 
     <section id="menu">
         <div class="menu">
-          <div class="heading">
-              <h1>Restaurant Food</h1>
-              <h3>&mdash;Menu&mdash;</h3>
-          </div>
-          <div class="food-items">
-              <img src="../static/images/food-to-share-1-400x400.jpg" alt="food-to-share-1-400x400">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Thai dish</h5>
-                      <h5 class="price">10$</h5>
+            <div class="heading">
+                <h1>Restaurant Food</h1>
+                <h3>&mdash;Menu&mdash;</h3>
+            </div>
+
+            <div class="food-items">
+              {% for item in menu_items %}
+              <div class="food-item">
+                  {% if item.image %}
+                      <img src="data:image/jpeg;base64,{{ item.image|base64_encode }}" alt="{{ item.name }}">
+                  {% else %}
+                      <p>No image available</p>
+                  {% endif %}
+                  <div class="details">
+                      <div class="details-sub">
+                          <h5>{{ item.name }}</h5>
+                          <h5 class="price">ksh{{ item.price }}</h5>
+                      </div>
+                      <p>{{ item.description }}</p>
+                      <button onclick="addToCart()">Add to Cart</button>
                   </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
               </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/OIP (5).jpg" alt="OIP (5).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Ethiopian dish</h5>
-                      <h5 class="price">12$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/OIP (6).jpg" alt="OIP (6).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Fries and Burger</h5>
-                      <h5 class="price">8$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/OIP (7).jpg" alt="OIP (7).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Pepparoni Pizza</h5>
-                      <h5 class="price">5$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/OIP (8).jpg" alt="OIP (8).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Hauweian Pizza</h5>
-                      <h5 class="price">6$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/R (5).jpg" alt="R (5).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Club Sandwich</h5>
-                      <h5 class="price">7$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-      </div>
-
-
-      </section>
+          {% endfor %}
+          
+            </div>
+            
+        </div>
+    </section>
     <!-- end of menu section-->
 
     <!--Review section-->
@@ -226,6 +157,70 @@
     <!--Contact page-->
 
     <!--end of contact page-->
+    <!--footer section-->
+      <footer>
+
+      </footer>
+
+      <script src="../static/js/form.js"></script>
+      <script>
+        function addToCart() {
+            // Use AJAX to send a request to the Flask server
+            fetch('/add_to_cart', {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the total quantity in the cart
+                document.getElementById('totalQuantity').innerText = data.total_quantity;
+            });
+        }
     
+        function showCart() {
+            // Use AJAX to get the cart items and other details from the Flask server
+            fetch('/get_cart_items')
+            .then(response => response.json())
+            .then(data => {
+                // Display the cart items and other details
+                displayCartItems(data.cart_items);
+                displayOtherDetails(data.other_details);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    
+        function displayCartItems(cartItems) {
+            const cartItemsDiv = document.getElementById('cartItems');
+            cartItemsDiv.innerHTML = '';
+    
+            if (cartItems.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                const ul = document.createElement('ul');
+                cartItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerText = item;
+                    ul.appendChild(li);
+                });
+                cartItemsDiv.appendChild(ul);
+            }
+        }
+    
+        function displayOtherDetails(otherDetails) {
+            const otherDetailsDiv = document.getElementById('otherDetails');
+            otherDetailsDiv.innerHTML = '';
+    
+            const discountPercentage = otherDetails.discount_percentage;
+            const subtotal = otherDetails.subtotal;
+    
+            const discountDiv = document.createElement('div');
+            discountDiv.innerText = `Discount: ${discountPercentage}%`;
+            otherDetailsDiv.appendChild(discountDiv);
+    
+            const subtotalDiv = document.createElement('div');
+            subtotalDiv.innerText = `Subtotal: $${subtotal}`;
+            otherDetailsDiv.appendChild(subtotalDiv);
+        }
+    </script>
+
 </body>
 </html>
