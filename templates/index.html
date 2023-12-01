@@ -117,7 +117,7 @@
     <!--End of about us-->
 
     <!-- Menu section-->
-
+    <!--Updated-->
     <section id="menu">
         <div class="menu">
             <div class="heading">
@@ -162,26 +162,26 @@
 
       </footer>
 
-      <script src="../static/js/form.js"></script>
+      
       <script>
         function addToCart() {
-            // Use AJAX to send a request to the Flask server
+          
             fetch('/add_to_cart', {
                 method: 'POST',
             })
             .then(response => response.json())
             .then(data => {
-                // Update the total quantity in the cart
+                
                 document.getElementById('totalQuantity').innerText = data.total_quantity;
             });
         }
     
         function showCart() {
-            // Use AJAX to get the cart items and other details from the Flask server
+            
             fetch('/get_cart_items')
             .then(response => response.json())
             .then(data => {
-                // Display the cart items and other details
+                
                 displayCartItems(data.cart_items);
                 displayOtherDetails(data.other_details);
             })
