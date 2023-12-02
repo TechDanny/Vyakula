@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav class="navbar" style="background-color: #FF6C22; margin-bottom: 25px;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><h1>Your Cart</h1></a>
+        </div>
+      </nav>
+    {% if menu_items %}
+        <ul style="list-style: none;">
+            <table class="table table-striped table-hover">
+            {% for item in menu_items %}
+            <tr>
+                <td style="padding-right: 25px;">
+                <li>
+                    <img src="data:image/jpeg;base64,{{ item.image|base64_encode }}" alt="{{ item.name }}" style="width: 10%; padding-right: 30px;">
+                    {{ item.name }} - Price: ksh{{ item.price }}
+                </li>
+            </td>
+        </tr>
+            {% endfor %}
+            </table>
+        </ul>
+        <p style="padding-left: 200px"><b>Total Price: ksh{{ total_price }}</b></p>
+        <a href="{{ url_for('checkout') }}" class="btn btn-danger">Proceed to Checkout</a>
+    {% else %}
+        <p>Your cart is empty!!</p>
+    {% endif %}
+</body>
+</html>
