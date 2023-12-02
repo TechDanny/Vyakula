@@ -78,6 +78,20 @@ body{
     margin-top: 25px;
 }
 
+.cart-info {
+    display: flex;
+    align-items: center;
+
+}
+.totalQuantity{
+    margin-left: -5px;
+    margin-top: -20px;
+    right: 405px;
+    color: red; 
+    padding: 4px 8px;
+    font-size: 25px;
+}
+
 .menu {
     padding: 0 10px 30px 10px;
     display: grid;
