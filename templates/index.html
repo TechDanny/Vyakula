@@ -38,6 +38,30 @@
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
+
+              <li class="nav-item profile">
+                <ul class="custom-list-style">
+                    <li class="nav-item dropdown">
+                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-light">
+                              <li style="padding-left: 10px;">
+                                  Hello {{ user.first_name }} {{ user.second_name }} <br> <hr>
+                                  Name: {{ user.username }} <br>
+                                  Phone no.: {{ user.phone_no }} <br>
+                                  email: {{ user.email }}
+                                  <hr>
+                              </li>
+                              <li style="text-align: right;">
+                                  <form action="{{ url_for('logout') }}" method="post">
+                                      <button type="submit" class="btn btn-danger" class="btn btn-link">Logout</button>
+                                  </form>
+                              </li>
+                          
+                      </ul>
+                      
+                    </li>
               
               </ul>
               
@@ -119,104 +143,35 @@
     <!-- Menu section-->
 
     <section id="menu">
-        <div class="menu">
+      <div class="menu">
           <div class="heading">
               <h1>Restaurant Food</h1>
               <h3>&mdash;Menu&mdash;</h3>
           </div>
-          <div class="food-items">
-              <img src="../static/images/food-to-share-1-400x400.jpg" alt="food-to-share-1-400x400">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Thai dish</h5>
-                      <h5 class="price">10$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
 
           <div class="food-items">
-              <img src="../static/images/OIP (5).jpg" alt="OIP (5).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Ethiopian dish</h5>
-                      <h5 class="price">12$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
+            {% for item in menu_items %}
+            <div class="food-item">
+                {% if item.image %}
+                    <img src="data:image/jpeg;base64,{{ item.image|base64_encode }}" alt="{{ item.name }}">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+                <div class="details">
+                    <div class="details-sub">
+                        <h5>{{ item.name }}</h5>
+                        <h5 class="price">ksh{{ item.price }}</h5>
+                    </div>
+                    <p>{{ item.description }}</p>
+                    <button onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+        {% endfor %}
+        
           </div>
-
-          <div class="food-items">
-              <img src="../static/images/OIP (6).jpg" alt="OIP (6).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Fries and Burger</h5>
-                      <h5 class="price">8$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/OIP (7).jpg" alt="OIP (7).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Pepparoni Pizza</h5>
-                      <h5 class="price">5$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/OIP (8).jpg" alt="OIP (8).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Hauweian Pizza</h5>
-                      <h5 class="price">6$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
-
-          <div class="food-items">
-              <img src="../static/images/R (5).jpg" alt="R (5).jpg">
-              <div class="details">
-                  <div class="details-sub">
-                      <h5>Club Sandwich</h5>
-                      <h5 class="price">7$</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Possimus sapiente reprehenderit voluptatibus! Obcaecati,
-                     cupiditate autem.
-                  </p>
-                  <button>Add to Cart</button>
-              </div>
-          </div>
+          
       </div>
-
-
-      </section>
+  </section>
     <!-- end of menu section-->
 
     <!--Review section-->
@@ -371,6 +326,6 @@
     </footer>
 
     <!--end of footer-->
-    
+    <script src="../static/js/form.js"></script>
 </body>
 </html>
