@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_from_directory, current_app
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_from_directory, current_app, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_required, LoginManager, logout_user, UserMixin, login_user
@@ -22,10 +22,10 @@ UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'upload
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+db = SQLAlchemy(app)
 
-total_quantity = 0
-cart_items = []
-other_details = {'discount_percentage': 10, 'subtotal': 0}
+
+
 
 class MenuItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -79,19 +79,30 @@ def index():
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    global total_quantity, cart_items
-    total_quantity += 1
-    item = ['Ethiopian dish', 'Thai dish', 'Fries and Burger', 'Pepparoni Pizza', 'Hauweian Pizza']
-    cart_items.append(item)
+    item_id = request.json.get('itemId')
+    item = MenuItem.query.get_or_404(item_id)
+
+    cart_items = session.get('cart_items', [])
+    cart_items.append(item.name)
+    session['cart_items'] = cart_items
+
+    total_quantity = len(cart_items)
     return jsonify({'total_quantity': total_quantity})
 
-@app.route('/get_cart_items')
-def get_cart_items():
-    global cart_items, other_details
-    subtotal = len(cart_items) * 12
-    other_details['subtotal'] = subtotal
+@app.route('/cart')
+def cart():
+    cart_items = session.get('cart_items', [])
+    menu_items = MenuItem.query.filter(MenuItem.name.in_(cart_items)).all()
+    
+    total_price = sum(item.price for item in menu_items)
 
-    return jsonify({'cart_items': cart_items, 'other_details': other_details})
+    return render_template('cart.html', menu_items=menu_items, total_price=total_price)
+
+@app.route('/checkout')
+def checkout():
+    cart_items = session.pop('cart_items', [])
+    return render_template('checkout.html', cart_items=cart_items)
+
 
 @login_manager.user_loader
 def load_user(user_id):
