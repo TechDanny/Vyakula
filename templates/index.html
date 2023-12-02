@@ -32,6 +32,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="#menu">Menu</a>
               </li>
+              <li class="nav-item cart-info">
+                <a class="nav-link" href="{{ url_for('cart') }}" onclick="showCart"><i class="bi bi-cart3"></i>
+                  Cart
+                </a>
+                <div class="totalQuantity" id="totalQuantity">0</div>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="#review">Review</a>
               </li>
