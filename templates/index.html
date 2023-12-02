@@ -169,7 +169,7 @@
                         <h5 class="price">ksh{{ item.price }}</h5>
                     </div>
                     <p>{{ item.description }}</p>
-                    <button onclick="addToCart()">Add to Cart</button>
+                    <button onclick="addToCart(' {{item.id}}')">Add to Cart</button>
                 </div>
             </div>
         {% endfor %}
