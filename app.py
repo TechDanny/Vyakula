@@ -22,10 +22,6 @@ UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'upload
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-db = SQLAlchemy(app)
-
-
-
 
 class MenuItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
