@@ -78,6 +78,7 @@ body{
     margin-top: 25px;
 }
 
+/* cart styling */
 .cart-info {
     display: flex;
     align-items: center;
@@ -91,6 +92,7 @@ body{
     padding: 4px 8px;
     font-size: 25px;
 }
+/* end of cart styling */
 
 .menu {
     padding: 0 10px 30px 10px;
