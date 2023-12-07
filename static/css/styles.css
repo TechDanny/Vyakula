@@ -130,7 +130,7 @@ body{
     grid-template-columns: repeat(4, minmax(0, 1fr));
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-    transition: .2 ease-in-out;
+    transition: .2s ease-in-out;
     gap: 20px;
     border: 1px solid orange;
     justify-content: flex-end;
@@ -195,6 +195,7 @@ h1{
 
     .food-items {
         grid-template-columns: 1fr;
+        width: 100%;
     }
     
 }
