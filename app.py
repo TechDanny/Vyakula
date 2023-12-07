@@ -5,7 +5,7 @@ from flask_login import current_user, login_required, LoginManager, logout_user,
 import os
 from werkzeug.utils import secure_filename
 import base64
-from sqlalchemy import IntegrityError
+from sqlalchemy.exc import IntegrityError
 
 
 app = Flask(__name__)
