@@ -5,6 +5,7 @@ from flask_login import current_user, login_required, LoginManager, logout_user,
 import os
 from werkzeug.utils import secure_filename
 import base64
+from sqlalchemy import IntegrityError
 
 
 app = Flask(__name__)
@@ -138,10 +139,15 @@ def register():
                         email=email,
                         confirm_password=confirm_password,
                         )
-        db.session.add(new_user)
-        db.session.commit()
-        flash('Your account has been created!', 'success')
-        return redirect(url_for('login'))
+        
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Your account has been created!', 'success')
+            return redirect(url_for('login'))
+        except IntegrityError as e:
+            db.session.rollback()
+            flash('Email address is already in use. Please try another one', 'danger')
 
     return render_template('register.html')
 
