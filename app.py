@@ -148,7 +148,7 @@ def register():
             return redirect(url_for('login'))
         except IntegrityError as e:
             db.session.rollback()
-            flash('Email address is already in use', 'danger')
+            flash('Email address is already in use. Please try another one', 'danger')
 
     return render_template('register.html')
 
