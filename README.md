@@ -12,7 +12,8 @@
 2. [Usage](#usage)
 3. [Features](#features)
 4. [Contributing](#contributing)
-5. [Main Contributors](#contributors)
+5. [Main Contributors](#main contributors)
+6. [License](#license)
 
 ## Installation
 1. Clone the repository
@@ -27,7 +28,7 @@
 1. User can register
     <img src="./static/images/Register1.webp">
 2. User can login
-    <img src="./static/images/login1.webp">
+    <img src="./static/images/login.webp">
 3. Admins can add, update and delete menu
     <img src="./static/images/Screenshot2.png">
 4. User can browse the menu
@@ -44,3 +45,6 @@ We welcome contributions! Please follow these guidelines:
 1. Brian Jalang'o      - brianhannington94@gmail.com
 2. Duncan Musau        - kokidanny15@gmail.com
 3. Syphrose Wabulwenyi - swabulwenyi@gmail.com
+
+## License
+This project is licensed under the [MIT License](LICENSE)
