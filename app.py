@@ -6,6 +6,7 @@ import os
 from werkzeug.utils import secure_filename
 import base64
 from sqlalchemy.exc import IntegrityError
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -16,6 +17,8 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 db = SQLAlchemy(app)
+
+migrate = Migrate(app, db)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
