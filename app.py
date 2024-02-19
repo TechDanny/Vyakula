@@ -10,7 +10,8 @@ from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clients.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clients.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uybnzcniiwdiiu:f169573ddd8be734cf349b6c84edb524b1509d5b50e14f19b8d978d4f39a7769@ec2-3-230-24-12.compute-1.amazonaws.com:5432/df62jnvti6tef1'
 app.config['SECRET_KEY'] = 'your_secret_key'
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
