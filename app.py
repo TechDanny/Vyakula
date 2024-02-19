@@ -43,8 +43,8 @@ class User(UserMixin, db.Model):
     second_name = db.Column(db.String(20), nullable=False)
     phone_no = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(60), nullable=False, unique=True)
-    password = db.Column(db.String(60), nullable=False)
-    confirm_password = db.Column(db.String(60), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    confirm_password = db.Column(db.String(255), nullable=False)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
