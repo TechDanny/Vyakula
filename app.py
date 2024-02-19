@@ -7,13 +7,16 @@ from werkzeug.utils import secure_filename
 import base64
 from sqlalchemy.exc import IntegrityError
 from flask_migrate import Migrate
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
 
+load_dotenv() #load the environment variables
+
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clients.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://uybnzcniiwdiiu:f169573ddd8be734cf349b6c84edb524b1509d5b50e14f19b8d978d4f39a7769@ec2-3-230-24-12.compute-1.amazonaws.com:5432/df62jnvti6tef1'
-app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 db = SQLAlchemy(app)
