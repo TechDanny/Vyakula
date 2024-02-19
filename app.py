@@ -38,7 +38,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     first_name = db.Column(db.String(20), nullable=False)
     second_name = db.Column(db.String(20), nullable=False)
-    phone_no = db.Column(db.Integer, nullable=False, unique=True)
+    phone_no = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(60), nullable=False, unique=True)
     password = db.Column(db.String(60), nullable=False)
     confirm_password = db.Column(db.String(60), nullable=False)
