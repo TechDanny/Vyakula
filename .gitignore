@@ -4,6 +4,6 @@
 
 # Ignore __pycache__ directories
 __pycache__/
-ourvenv/
+venv
 instance/
 .env
