@@ -9,28 +9,26 @@ from sqlalchemy.exc import IntegrityError
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 
-
 app = Flask(__name__)
 
-load_dotenv() #load the environment variables
+load_dotenv()  # Load environment variables
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clients.db'
+# Update to use MySQL
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 db = SQLAlchemy(app)
-
 migrate = Migrate(app, db)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
-
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
+# Define models
 class MenuItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -38,7 +36,6 @@ class MenuItem(db.Model):
     description = db.Column(db.String(255), nullable=True)
     image = db.Column(db.LargeBinary, nullable=True)
 
-#User model for the Database
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -77,7 +74,7 @@ def index():
     menu_items = MenuItem.query.all()
 
     if 'image' in request.files:
-            menu_items.image = save_image(request.files['image'])
+        menu_items.image = save_image(request.files['image'])
 
     return render_template("index.html", user=user, menu_items=menu_items)
 
@@ -106,7 +103,6 @@ def cart():
 def checkout():
     cart_items = session.pop('cart_items', [])
     return render_template('checkout.html', cart_items=cart_items)
-
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -205,7 +201,6 @@ def add_menu_item():
 
     return redirect(url_for('admin'))
 
-
 @app.route('/admin/delete/<int:item_id>')
 def delete_menu_item(item_id):
     item_to_delete = MenuItem.query.get_or_404(item_id)
@@ -235,3 +230,6 @@ def update_menu_item(item_id):
         return redirect(url_for('admin'))
 
     return render_template('update.html', item=item_to_update)
+
+if __name__ == '__main__':
+    app.run(debug=True)
