@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/mnt/c/Users/user/Desktop/Tech files/vyakula-group-project/Vyakula/venv/bin/python3" "$0" "$@"
-' '''
+#!/home/techdanny/Desktop/Tech_folders/Vyakula/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
