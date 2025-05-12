@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 load_dotenv()  # Load environment variables
 
-# Update to use MySQL
+#MySQL configurations
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
